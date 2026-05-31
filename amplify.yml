@@ -4,9 +4,9 @@ applications:
     frontend:
       phases:
         preBuild:
-          commands: ['yarn install']
+          commands: ['npm install']
         build:
-          commands: ['yarn workspace website run build']
+          commands: ['npm run build --workspace=website']
       artifacts:
         baseDirectory: packages/website/dist/client
         files:
