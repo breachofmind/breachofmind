@@ -5,11 +5,9 @@ import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 const tanstackStartOptions = {
-  prerender: {
+  spa: {
     enabled: true,
-    crawlLinks: true,
-    autoStaticPathsDiscovery: true,
-  }
+  },
 }
 
 const config = defineConfig({
