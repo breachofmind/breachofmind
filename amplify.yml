@@ -1,0 +1,18 @@
+version: 1
+applications:
+  -
+    frontend:
+      phases:
+        preBuild:
+          commands: ['yarn install']
+        build:
+          commands: ['yarn workspace website run build']
+      artifacts:
+        baseDirectory: packages/website/dist/client
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - 'node_modules'
+      buildPath: /
+    appRoot: packages/website
