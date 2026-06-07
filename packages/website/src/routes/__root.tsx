@@ -2,6 +2,7 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
+import resetCss from '../reset.css?url';
 import appCss from '../styles.css?url'
 
 export const Route = createRootRoute({
@@ -21,6 +22,10 @@ export const Route = createRootRoute({
     links: [
       {
         rel: 'stylesheet',
+        href: resetCss
+      },
+      {
+        rel: 'stylesheet',
         href: appCss,
       },
     ],
@@ -34,7 +39,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
+      <body>
         {children}
         <TanStackDevtools
           config={{

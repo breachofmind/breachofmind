@@ -2,35 +2,74 @@ import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({ component: App })
 
-const LINKS = [
-  {
-    name: 'Instagram',
-    href: 'https://www.instagram.com/breach_of_mind',
-  },
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/michael-adamczyk-22271867',
-  },
-  {
-    name: 'GitHub',
-    href: 'https://github.com/breachofmind',
-  }
-]
+// const LINKS = [
+//   {
+//     name: 'Instagram',
+//     href: 'https://www.instagram.com/breach_of_mind',
+//   },
+//   {
+//     name: 'LinkedIn',
+//     href: 'https://www.linkedin.com/in/michael-adamczyk-22271867',
+//   },
+//   {
+//     name: 'GitHub',
+//     href: 'https://github.com/breachofmind',
+//   }
+// ];
+
+type CP_CarouselImages = {
+  reverse?: boolean;
+};
+
+
+function CarouselImages({ reverse }: CP_CarouselImages) {
+  const length = 8;
+  const className = reverse ? 'carousel-group reverse' : 'carousel-group';
+  return (
+    <div className="carousel-container">
+      <div className="carousel-track">
+        <div className={className}>
+          {Array.from({ length }).map((_, i) => (
+            <div className="carousel-mock-image" key={i}></div>
+          ))}
+        </div>
+        <div className={className} aria-hidden="true">
+          {Array.from({ length }).map((_, i) => (
+            <div className="carousel-mock-image" key={i}></div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+type CP_TitleLine = {
+  name: string;
+  reverse?: boolean;
+};
+
+function TitleLine({ name, reverse }: CP_TitleLine) {
+  return (
+    <div className="title-line">
+      <div className="title-overlay">
+        <div className="title-overlay-space"></div>
+        <div className={`title-overlay-image title-overlay-image--${name}`}></div>
+        <div className="title-overlay-space"></div>
+      </div>
+      <div className="title-images">
+        <CarouselImages reverse={reverse} />
+      </div>
+    </div>
+  )
+}
 
 function App() {
   return (
-    <main className="page-wrap px-4 pb-8 pt-14">
-      <h1 className="text-4xl mb-4">Working on it...</h1>
-      <p>I haven't updated my website in 10 years, so I'm taking some time to put something together.</p>
-      <p>Back in a bit! In the meantime, here are some links to my other things:</p>
-      <hr className="my-4"/>
-      <ul>
-        {LINKS.map(link => (
-          <li key={link.href}>
-            <a href={link.href}>{link.name}</a>
-          </li>
-        ))}
-      </ul>
+    <main>
+      <TitleLine name="mike"/>
+      <TitleLine name="adam" reverse />
+      <TitleLine name="czyk"/>
+      <TitleLine name="breachofmind" reverse />
     </main>
   )
 }
