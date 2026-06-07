@@ -52,9 +52,7 @@ function TitleLine({ name, reverse }: CP_TitleLine) {
   return (
     <div className="title-line">
       <div className="title-overlay">
-        <div className="title-overlay-space"></div>
         <div className={`title-overlay-image title-overlay-image--${name}`}></div>
-        <div className="title-overlay-space"></div>
       </div>
       <div className="title-images">
         <CarouselImages reverse={reverse} />

@@ -8,29 +8,33 @@
 }
 
 :root {
-  --bg-color: #0c0c16;
+  --bg-color: linear-gradient(57deg,rgba(0, 0, 0, 1) 0%, rgba(17, 17, 26, 1) 75%, rgba(24, 53, 79, 1) 100%);
 }
 
 body {
-  background: white;
+  background: var(--bg-color);
+  background-attachment: fixed;
+}
+
+@media (min-width: 960px) {
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 .title-line {
   background: var(--bg-color);
+  background-attachment: fixed;
   position: relative;
 }
 .title-overlay {
-  top: 0;
-  left: 0;
   position: absolute;
-  width: 100%;
+  inset: 0;
   z-index: 1;
-  display: flex;
-  flex-direction: row;
-  justify-items: center;
-}
-.title-overlay-space {
-  background: var(--bg-color);
-  flex-grow: 1;
 }
 .title-overlay-image--mike {
   mask-image: url("/mike.svg"), linear-gradient(#000 0 0);
@@ -45,36 +49,37 @@ body {
   mask-image: url("/breachofmind.svg"), linear-gradient(#000 0 0);
 }
 .title-overlay-image {
-  align-self: flex-start;
-  flex-basis: 660px;
-  height: 150px;
+  width: 100%;
+  height: 100%;
   background: var(--bg-color);
+  background-attachment: fixed;
   mask-position: center, 0 0;
   mask-repeat: no-repeat, repeat;
   mask-size: contain, 100%;
   mask-composite: exclude;
 }
 
-/* Outer container to clip overflowing images */
+/* Outer container to clip overflowing images — drives the row height */
 .carousel-container {
   overflow: hidden;
   width: 100%;
-  max-width: 960px;
-  margin: 20px auto;
+  aspect-ratio: 701 / 150;
   background: black;
 }
 
 /* Track holding both groups side by side */
 .carousel-track {
   display: flex;
-  margin: auto;
-  width: max-content;
+  height: 100%;
 }
 
 /* Flex layout inside each group */
 .carousel-group {
   display: flex;
   align-items: center;
+  height: 100%;
+  flex-shrink: 0;
+  will-change: transform;
   animation: scroll 15s linear infinite;
 }
 .carousel-group.reverse {
@@ -82,8 +87,8 @@ body {
 }
 
 .carousel-mock-image {
-  height: 100px;
-  width: 100px;
+  height: 100%;
+  aspect-ratio: 1 / 1;
   flex-shrink: 0;
   background: red;
 }
@@ -102,9 +107,9 @@ body {
 }
 @keyframes scroll-reverse {
   0% {
-    transform: translateX(0);
+    transform: translateX(-100%);
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(0);
   }
 }
