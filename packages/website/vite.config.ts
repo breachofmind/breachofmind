@@ -12,7 +12,12 @@ const tanstackStartOptions = {
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
-  plugins: [devtools(), tailwindcss(), tanstackStart(tanstackStartOptions), viteReact()],
+  plugins: [
+    devtools(),
+    tailwindcss(),
+    tanstackStart(tanstackStartOptions),
+    viteReact(),
+  ],
 })
 
 export default config

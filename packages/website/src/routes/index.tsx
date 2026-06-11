@@ -1,36 +1,23 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { SocialLinks } from "#/components/SocialLinks.tsx";
+import { TitleLine } from "#/components/TitleLine.tsx";
 
 export const Route = createFileRoute('/')({ component: App })
 
-const LINKS = [
-  {
-    name: 'Instagram',
-    href: 'https://www.instagram.com/breach_of_mind',
-  },
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/michael-adamczyk-22271867',
-  },
-  {
-    name: 'GitHub',
-    href: 'https://github.com/breachofmind',
-  }
-]
-
 function App() {
   return (
-    <main className="page-wrap px-4 pb-8 pt-14">
-      <h1 className="text-4xl mb-4">Working on it...</h1>
-      <p>I haven't updated my website in 10 years, so I'm taking some time to put something together.</p>
-      <p>Back in a bit! In the meantime, here are some links to my other things:</p>
-      <hr className="my-4"/>
-      <ul>
-        {LINKS.map(link => (
-          <li key={link.href}>
-            <a href={link.href}>{link.name}</a>
-          </li>
-        ))}
-      </ul>
+    <main>
+      <TitleLine name="mike" start={1} end={12} />
+      <TitleLine name="adam" start={13} end={24} reverse />
+      <TitleLine name="czyk" start={25} end={38}/>
+      <TitleLine name="breachofmind" start={39} end={51} reverse />
+      <section className="info-block">
+        <p className="text-2xl px-4">Hi! I'm a creative technologist from Portland, Oregon. You found my corner of the web.</p>
+      </section>
+      <footer>
+        <SocialLinks />
+        <p className="copyright-year text-right">© 2026.</p>
+      </footer>
     </main>
   )
 }

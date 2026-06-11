@@ -2,7 +2,12 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
+import resetCss from '../reset.css?url';
 import appCss from '../styles.css?url'
+
+const TITLE = 'Mike Adamczyk - Breach of Mind';
+const DESCRIPTION = 'Creative technologist and designer from Portland, OR';
+const URL = 'https://www.breachofmind.com';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -15,14 +20,65 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'Mike Adamczyk - Breach of Mind',
+        title: TITLE,
+      },
+      {
+        name: 'description',
+        content: DESCRIPTION,
+      },
+      {
+        name: 'og:title',
+        content: TITLE
+      },
+      {
+        name: 'og:description',
+        content: DESCRIPTION
+      },
+      {
+        name: 'og:image',
+        content: '/logo192.png'
+      },
+      {
+        name: 'twitter:image',
+        content: '/logo192.png'
+      },
+      {
+        name: 'og:url',
+        content: URL
+      },
+      {
+        name: 'twitter:url',
+        content: URL
+      },
+      {
+        name: 'twitter:title',
+        content: TITLE
+      },
+      {
+        name: 'twitter:description',
+        content: DESCRIPTION
       },
     ],
     links: [
       {
         rel: 'stylesheet',
+        href: resetCss
+      },
+      {
+        rel: 'stylesheet',
         href: appCss,
       },
+      {
+        rel: 'icon',
+        href: 'favicon.ico',
+        type: 'image/x-icon',
+      },
+      {
+        rel: 'icon',
+        href: 'logo192.png',
+        type: 'image/png',
+        sizes: '192x192'
+      }
     ],
   }),
   shellComponent: RootDocument,
@@ -34,7 +90,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
+      <body>
         {children}
         <TanStackDevtools
           config={{
